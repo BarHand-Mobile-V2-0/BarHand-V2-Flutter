@@ -157,7 +157,7 @@ class _RegisterForm extends ConsumerWidget {
                         if (success) {
                           print('success');
                           print(success);
-                          context.go('/suppliers');
+                          context.go('/login');
                         }
                       },
               )),
