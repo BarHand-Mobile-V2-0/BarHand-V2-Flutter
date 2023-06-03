@@ -43,8 +43,39 @@ class AuthDataSourceImpl extends AuthDataSource {
   }
 
   @override
-  Future<User> register(String email, String password, String fullName) {
-    // TODO: implement register
-    throw UnimplementedError();
+  Future<User> register(String email, String password, String name,
+      String lastName, String role) async {
+
+
+    print('${email},${password},${name},${lastName},${role} ');
+    try {
+      final response = await dio.post('/users/sign-up', data: {
+        'name': name,
+        'lastName': lastName,
+        'email': email,
+        'role': role,
+        'password': password,
+      });
+      print('response.data ${response}');
+      final user = UserMapper.userJsonToEntity(response.data);
+      print(response.data);
+      return user;
+    } on DioError catch (e) {
+      if (e.response?.statusCode == 401) {
+        print(
+            'Error de autenticación: ${e.response?.data['message'] ?? 'Credenciales incorrectas'}');
+        throw CustomError(
+            e.response?.data['message'] ?? 'Credenciales incorrectas');
+      }
+      if (e.type == DioErrorType.connectionTimeout) {
+        print('Error de conexión: Revisar conexión a internet');
+        throw CustomError('Revisar conexión a internet');
+      }
+      print('Error no controlado: $e');
+      throw Exception();
+    } catch (e) {
+      print('Error no controlado: $e');
+      throw Exception();
+    }
   }
 }

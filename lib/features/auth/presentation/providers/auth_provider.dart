@@ -42,7 +42,19 @@ class AuthNotifier extends StateNotifier<AuthState> {
     }
   }
 
-  void registerUser(String email, String password) async {}
+  void registerUser(String email, String password, String name, String lastName,
+      String role) async {
+    try {
+      print('REGISTERRR');
+      final user = await authRepository.register(email, password, name, lastName, role);
+      print('Error : ${user}');
+      _setLoggedUser(user);
+    } on CustomError catch (e) {
+      logout(e.message);
+    } catch (e) {
+      //logout('Error no controlado');
+    }
+  }
 
   void checkAuthStatus() async {
     final token = await keyValueStorageService.getValue<String>('token');

@@ -114,6 +114,7 @@ class _LoginForm extends ConsumerWidget {
                     : () async {
                   final success = await ref.read(loginFormProvider.notifier).onFormSubmit();
                   if (success) {
+                    print(success);
                     context.go('/suppliers');
                   }
                 },
