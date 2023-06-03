@@ -24,11 +24,11 @@ class ProductsScreen extends StatelessWidget {
         ],
       ),
       body: _ProductsView(supplierId: supplierId),
-      floatingActionButton: FloatingActionButton.extended(
+      /*floatingActionButton: FloatingActionButton.extended(
         label: const Text('Nuevo producto'),
         icon: const Icon(Icons.add),
         onPressed: () {},
-      ),
+      ),*/
     );
   }
 }
