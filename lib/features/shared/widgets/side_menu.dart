@@ -59,7 +59,7 @@ class SideMenuState extends ConsumerState<SideMenu> {
 
           ListTile(
             title: Text('Providers'),
-            leading: Icon(Icons.home_outlined),
+            leading: Icon(Icons.store_mall_directory_rounded),
             onTap: () => context.go('/suppliers'),
           ),
 
