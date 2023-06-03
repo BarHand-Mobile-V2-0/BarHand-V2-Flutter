@@ -16,8 +16,7 @@ class RegisterScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          body: GeometricalBackground(
-              child: SingleChildScrollView(
+          body: SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -54,7 +53,7 @@ class RegisterScreen extends StatelessWidget {
                   ],
                 ),
               )
-          )
+
       ),
     );
   }
@@ -104,7 +103,7 @@ class _RegisterForm extends StatelessWidget {
 
           SizedBox(
               width: double.infinity,
-              height: 60,
+              height: 40,
               child: CustomFilledButton(
                 text: 'Crear',
                 buttonColor: Colors.black,
