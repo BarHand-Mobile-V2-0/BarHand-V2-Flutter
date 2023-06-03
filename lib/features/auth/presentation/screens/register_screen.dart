@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:ur_provider/features/shared/shared.dart';
+import '../../../shared/widgets/custom_filled_button.dart';
+import '../../../shared/widgets/custom_text_form_field.dart';
 
 
 class RegisterScreen extends StatelessWidget {
@@ -16,7 +17,7 @@ class RegisterScreen extends StatelessWidget {
     return GestureDetector(
       onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
       child: Scaffold(
-          body: SingleChildScrollView(
+          body:  SingleChildScrollView(
                 physics: const ClampingScrollPhysics(),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,9 +72,11 @@ class _RegisterForm extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 50),
       child: Column(
         children: [
-          const SizedBox( height: 50 ),
+          // const SizedBox( height: 30 ),
+          const Spacer(flex: 2),
           Text('Nueva cuenta', style: textStyles.titleMedium ),
-          const SizedBox( height: 50 ),
+          const Spacer(),
+          // const SizedBox( height: 30 ),
 
           const CustomTextFormField(
             label: 'Nombre completo',
@@ -103,7 +106,7 @@ class _RegisterForm extends StatelessWidget {
 
           SizedBox(
               width: double.infinity,
-              height: 40,
+              height: 60,
               child: CustomFilledButton(
                 text: 'Crear',
                 buttonColor: Colors.black,
