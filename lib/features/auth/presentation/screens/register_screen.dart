@@ -148,15 +148,6 @@ class _RegisterForm extends ConsumerWidget {
               child: CustomFilledButton(
                 text: 'Crear',
                 buttonColor: Colors.black,
-<<<<<<< HEAD
-                onPressed: (){
-                  
-                },
-              )
-          ),
-
-          const Spacer( flex: 2 ),
-=======
                 onPressed: registerForm.isPosting
                     ? null
                     : () async {
@@ -164,15 +155,12 @@ class _RegisterForm extends ConsumerWidget {
                             .read(registerFormProvider.notifier)
                             .onFormSubmit();
                         if (success) {
-                          print('success');
-                          print(success);
                           context.go('/login');
                         }
                       },
               )),
 
           const Spacer(flex: 2),
->>>>>>> 29fd01a247580dd3503536a3be1d59f5b3f40d3f
 
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
