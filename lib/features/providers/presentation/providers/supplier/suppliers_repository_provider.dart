@@ -7,8 +7,8 @@ import '../../../../auth/presentation/providers/auth_provider.dart';
 final suppliersRepositoryProvider = Provider<SuppliersRepository>((ref) {
   final accessToken = ref.watch(authProvider).user?.token ?? '';
 
-  final productsRepository = SuppliersRepositoryImpl(
+  final supplierRepository = SuppliersRepositoryImpl(
       SuppliersDatasourceImpl(accessToken: accessToken));
 
-  return productsRepository;
+  return supplierRepository;
 });

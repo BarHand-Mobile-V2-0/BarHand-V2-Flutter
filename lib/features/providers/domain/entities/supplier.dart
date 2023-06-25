@@ -31,4 +31,21 @@ class Supplier {
     required this.image,
     required this.likes,
   });
+  static Supplier objJson(Map<String, dynamic> json) {
+    return Supplier(
+      id: json["id"] as int,
+      supplierName: json["supplierName"] as String,
+      name: json["name"] as String,
+      lastName: json["lastName"] as String,
+      email: json["email"] as String,
+      address: json["address"] as String,
+      ruc: json["ruc"] as int,
+      category: json["category"] as String,
+      description: json["description"] as String,
+      phone: json["phone"] as int,
+      password: json["password"] as String,
+      image: json["image"] as String,
+      likes: json["likes"] as int,
+    );
+  }
 }

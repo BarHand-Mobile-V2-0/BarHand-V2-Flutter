@@ -18,8 +18,8 @@ class SuppliersRepositoryImpl extends SuppliersRepository {
   }
 
   @override
-  Future<List<Supplier>> getProviders() {
-    return datasource.getProviders();
+  Future<List<Supplier>> getProviders()  {
+    return  datasource.getProviders();
   }
 
   @override

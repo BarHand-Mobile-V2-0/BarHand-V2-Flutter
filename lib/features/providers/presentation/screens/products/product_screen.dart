@@ -100,12 +100,12 @@ class _ProductInformation extends ConsumerWidget {
     final productForm = ref.watch(productFormProvider(product));
 
     return const Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20),
+      padding: EdgeInsets.symmetric(horizontal: 80),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text('Please Write to provider'),
-          SizedBox(height: 15),
+          SizedBox(height: 25),
           CustomProductField(
             isTopField: true,
             maxLines: 15,

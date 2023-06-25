@@ -31,15 +31,15 @@ class SuppliersDatasourceImpl extends SuppliersDatasource {
   }
 
   @override
-  Future<List<Supplier>> getProviders() async {
+   Future<List<Supplier>> getProviders() async {
     final response = await dio.get<List>('/suppliers');
 
     ///print(response);
-    final List<Supplier> products = [];
-    for (final product in response.data ?? []) {
-      products.add(SupplierMapper.jsonToEntity(product));
+    final List<Supplier> suppliers = [];
+    for (final provider in response.data ?? []) {
+      suppliers.add(SupplierMapper.jsonToEntity(provider));
     }
-    return products;
+    return suppliers;
   }
 
   @override

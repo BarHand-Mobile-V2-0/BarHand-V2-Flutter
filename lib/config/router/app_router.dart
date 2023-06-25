@@ -2,6 +2,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ur_provider/features/auth/auth.dart';
 import 'package:ur_provider/features/providers/presentation/screens/screens.dart';
+import 'package:ur_provider/features/store/presentation/screens/editProfileStore.dart';
+import 'package:ur_provider/features/store/presentation/screens/storeHome.dart';
+import 'package:ur_provider/features/store/presentation/screens/storeProfile.dart';
+import 'package:ur_provider/features/store/presentation/screens/supplierProfile.dart';
+
+import '../../features/inventory/presentation/product_card_by_store.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/login',
@@ -42,5 +48,58 @@ final appRouter = GoRouter(
         supplierId: int.parse(state.params['id'] ?? '0'),
       ),
     ),
+
+
+    ///* STORES Routes
+    GoRoute(
+      path: '/store/:id/home',
+      builder: (context, state) => StoreHome(
+        storeId: int.parse(state.params['id'] ?? '0'),
+      ),
+    ),
+
+    GoRoute(
+      path: '/store/:storeId/products/:productId',
+      builder: (context, state) => ProductScreen1(
+        storeId: int.parse(state.params['storeId'] ?? '0'),
+        productId: int.parse(state.params['productId'] ?? '0'),
+
+      ),
+    ),
+
+    GoRoute(
+      path: '/store/supplier/:supplierId',
+      builder: (context, state) => SupplierProfileByStore(
+        supplierId: int.parse(state.params['supplierId'] ?? '0'),
+
+      ),
+    ),
+
+    GoRoute(
+      path: '/store/:id/profile',
+      builder: (context, state) => StoreProfile(
+        storeId: int.parse(state.params['id'] ?? '0'),
+
+      ),
+    ),
+
+    GoRoute(
+      path: '/store/:id/editProfile',
+      builder: (context, state) => EditProfileStore(
+        storeId: int.parse(state.params['id'] ?? '0'),
+
+      ),
+    ),
+
+
+
+    GoRoute(
+      path: '/supplier/:id/products',
+      builder: (context, state) => ProductsScreen(
+        supplierId: int.parse(state.params['id'] ?? '0'),
+      ),
+    ),
+
+
   ],
 );
