@@ -37,4 +37,18 @@ class store {
         image: json["image"] as String? ?? 'N/A'
     );
   }
+  //to json methode
+  Map<String,dynamic> toJson(){
+    return{
+      "id":id,
+      "storeName": storeName,
+      "email": email,
+      "address": address,
+      "lastName": lastName,
+      "name": name,
+      "phone": phone,
+      "password": password,
+      "image": image,
+    };
+  }
 }
