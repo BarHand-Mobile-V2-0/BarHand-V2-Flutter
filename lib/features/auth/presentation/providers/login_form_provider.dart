@@ -70,12 +70,13 @@ class LoginFormState {
   final Email email;
   final Password password;
 
+
   LoginFormState(
       {this.isPosting = false,
       this.isFormPosted = false,
       this.isValid = false,
       this.email = const Email.pure(),
-      this.password = const Password.pure()});
+      this.password = const Password.pure(),});
 
   LoginFormState copyWith({
     bool? isPosting,

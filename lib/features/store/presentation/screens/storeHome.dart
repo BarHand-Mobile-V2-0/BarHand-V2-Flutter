@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:ur_provider/features/inventory/domain/entities/product.dart';
 
 import 'package:ur_provider/features/store/domain/domain.dart';
 import 'package:ur_provider/features/store/domain/services/store_service.dart';
@@ -41,10 +42,61 @@ class _StoreHomeView extends ConsumerStatefulWidget {
 }
 
 class _StoreHomeViewState extends ConsumerState {
+  late Future<List<Product>> products;
+  final controller = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    products = productService.getAllProduct();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(children: [
+      body: Column(
+        children: <Widget>[
+          Container(
+            margin: const EdgeInsets.fromLTRB(16, 16, 16, 16),
+            child: TextField(
+              controller: controller,
+              decoration: InputDecoration(
+                  prefixIcon: const Icon(Icons.search),
+                  hintText: 'Search',
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15),
+                      borderSide: const BorderSide(color: Colors.black)
+                  )
+              ),
+              onChanged: searchProduct,
+            ),
+          ),
+          Expanded(
+              child: FutureBuilder<List<Product>>(
+            future: products,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                final productList = snapshot.data;
+                return ListView.builder(
+                  itemCount: productList!.length,
+                  itemBuilder: (context, index) {
+                    final product = productList[index];
+                    return ListTile(
+                      leading: Image.network(product.image,
+                          fit: BoxFit.cover, width: 50, height: 50),
+                      title: Text(product.name),
+                    );
+                  },
+                );
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              }
+              return Center(child: CircularProgressIndicator());
+            },
+          ))
+        ],
+      ),
+      /*body: Column(children: [
         FutureBuilder<store>(
             future: StoreService.getStoreById(getStoreId()),
             builder: (context, AsyncSnapshot<store> snapshot) {
@@ -188,13 +240,18 @@ class _StoreHomeViewState extends ConsumerState {
             ],
           ),
         ),
-      ]),
+      ]),*/
     );
   }
+  void searchProduct(String query) async  {
+    final productList = await products;
+    final suggestions = productList.where((product) {
+      final productName = product.name.toLowerCase();
+      final input = query.toLowerCase();
+      return productName.contains(input);
+    }).toList();
 
-  @override
-  void initState() {
-    super.initState();
+    setState(() => products = Future.value(suggestions));
   }
 }
 
@@ -205,90 +262,3 @@ void setStoreId(id) {
 int getStoreId() {
   return storeId;
 }
-/*FutureBuilder(
-
-                  initialData: [],
-                  future: supplierService.getAllSupplier(),
-                  builder: (context,AsyncSnapshot<List>snapshot) {
-                    return ListView.builder(
-                        itemCount:suppliersState.suppliers.length,
-                        itemBuilder:(context,index){
-                          final productos=suppliersState.suppliers[index];
-                          return ListTile(
-                            title: Text('ID: '+productos.image.toString()),
-                          );
-                        });
-                  }
-              ),*/
-
-/*FutureBuilder(initialData: [],
-                future: productService.getAllProduct(),
-                builder: (context,AsyncSnapshot<List>snapshot)
-                =>
-                    Column(
-
-                  children: [
-                    SizedBox(
-                      height: 20,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                    ),
-                    Text('Best Provider',
-                      style: DefaultTextStyle.of(context).style.apply(fontSizeFactor: 2.0),
-                    ),
-                    CarouselSlider.builder(
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context,index,realIndex){
-                          var supplier = suppliersState.suppliers[ index];
-                          return
-                            Column(
-                              children: [
-                                Card(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      Text(supplier.supplierName),
-                                      Text(supplier.description),
-                                      Image(
-                                        image: NetworkImage(supplier.image.toString()),
-                                        fit: BoxFit.cover,
-                                        height: 200,
-                                      ),
-
-                                      Row(
-                                        mainAxisAlignment: MainAxisAlignment.end,
-                                        children: <Widget>[
-                                          TextButton(
-                                            child: const Text('Ver Producto'),
-                                            onPressed: () {/* ... */},
-                                          ),
-                                          const SizedBox(width: 8),
-                                          TextButton(
-                                            child: const Text('añadir'),
-                                            onPressed: () {/* ... */},
-                                          ),
-                                          const SizedBox(width: 8),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-
-                              ],
-                            );
-
-                          //return  Image.network(product.image.toString());
-
-                        },
-                        options: CarouselOptions(
-                          height: 300.0,
-                          autoPlay: true,
-                          autoPlayCurve: Curves.easeInOut,
-                          enlargeCenterPage: true,
-                          autoPlayInterval: Duration(seconds: 3),
-                          scrollDirection: Axis.horizontal,
-                        ))
-                  ],
-                ),
-              ),*/
