@@ -3,8 +3,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ur_provider/features/inventory/domain/entities/product.dart';
 import 'package:ur_provider/features/inventory/service/product_service.dart';
-import 'package:ur_provider/features/providers/domain/entities/supplier.dart';
-import 'package:ur_provider/features/providers/services/supplier_service.dart';
+import 'package:ur_provider/features/supplier/domain/entities/supplier.dart';
+import 'package:ur_provider/features/supplier/domain/service/supplier_service.dart';
 import 'package:ur_provider/features/store/presentation/screens/storeHome.dart';
 
 import '../../../shared/widgets/side_menu.dart';
@@ -49,7 +49,7 @@ class _SupplierViewState extends ConsumerState {
         body: Container(
             padding: const EdgeInsets.all(20.0),
             child: FutureBuilder<Supplier>(
-              future: supplierService.getSupplierById(getSupplierId()),
+              future: SupplierService.getSupplierById(getSupplierId()),
               builder: (context, AsyncSnapshot<Supplier> snapshot) => Center(
                 child: Card(
                   child: Column(
@@ -82,7 +82,7 @@ class _SupplierViewState extends ConsumerState {
                         margin: EdgeInsets.only(top: 20),
                         width: double.infinity,
                         child: Image.network(
-                          snapshot.data!.image,
+                          snapshot.data?.image ?? 'N/A',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -99,7 +99,7 @@ class _SupplierViewState extends ConsumerState {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Address:' + snapshot.data!.address,
+                          'Address:' + (snapshot.data?.address ?? 'N/A'),
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -119,7 +119,7 @@ class _SupplierViewState extends ConsumerState {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Address:' + snapshot.data!.address,
+                          'Address:' + (snapshot.data?.address ?? 'n/A'),
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class _SupplierViewState extends ConsumerState {
                       Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: Text(
-                          'Category::' + snapshot.data!.category,
+                          'Category::' + (snapshot.data?.category ?? 'N/A'),
                           style: TextStyle(
                             fontSize: 18,
                             fontWeight: FontWeight.bold,
@@ -139,7 +139,7 @@ class _SupplierViewState extends ConsumerState {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 8.0),
                         child: Text(
-                          snapshot.data!.description,
+                          snapshot.data?.description ?? 'sin informacion',
                           style: TextStyle(
                             fontSize: 16,
                           ),

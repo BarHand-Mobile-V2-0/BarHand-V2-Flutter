@@ -36,4 +36,20 @@ class Product {
         rating: json["rating"] as int
     );
   }
+
+  //to json methode
+  Map<String,dynamic> toJson(){
+    return{
+      "id":id,
+      "name": name,
+      "category": category,
+      "image": image,
+      "price": price,
+      "description": description,
+      "numberOfSales": numberOfSales,
+      "available": available,
+      "supplierId": supplierId,
+      "rating": rating,
+    };
+  }
 }

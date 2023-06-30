@@ -35,6 +35,20 @@ class productService{
     }
     return <Product>[];
   }
+  static Future<void> updateProduct(dynamic updatedProduct) async {
+    final url = Uri.parse('$baseUrl/products/${updatedProduct.id}');
+    final response = await http.put(
+      url,
+      headers: headers,
+      body: jsonEncode(updatedProduct.toJson()),
+    );
+
+    if (response.statusCode == 200) {
+      print('Datos actualizados exitosamente');
+    } else {
+      throw Exception('Error en el servicio: ${response.statusCode}');
+    }
+  }
 
 
 

@@ -1,6 +1,5 @@
 
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 import '../../../../config/core/services/http-common.dart';
 import 'package:ur_provider/features/store/domain/entities/store.dart';

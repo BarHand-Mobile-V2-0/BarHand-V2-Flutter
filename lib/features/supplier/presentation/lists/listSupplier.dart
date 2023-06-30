@@ -1,4 +1,5 @@
-import 'package:ur_provider/features/providers/domain/domain.dart';
+
+import 'package:ur_provider/features/supplier/domain/entities/supplier.dart';
 
 class listSuppliers {
 
