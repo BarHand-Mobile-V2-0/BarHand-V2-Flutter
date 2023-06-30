@@ -1,2 +1,2 @@
-export 'supplier_screen.dart';
+export 'supplierHome.dart';
 export 'suppliers_screen.dart';
