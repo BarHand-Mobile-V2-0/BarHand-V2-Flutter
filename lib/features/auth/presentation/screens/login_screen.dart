@@ -21,16 +21,16 @@ class LoginScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const SizedBox(height: 80),
+              const SizedBox(height: 50),
               // Icon Banner
               const Icon(
                 Icons.store_mall_directory_outlined,
                 color: Colors.black,
                 size: 100,
               ),
-              const SizedBox(height: 80),
+              const SizedBox(height: 40),
               Container(
-                height: size.height - 260, // 80 los dos sizebox y 100 el ícono
+                height: size.height - 200, // 80 los dos sizebox y 100 el ícono
                 width: double.infinity,
                 decoration: BoxDecoration(
                   color: scaffoldBackgroundColor,
