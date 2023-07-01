@@ -119,75 +119,75 @@ class _ProductsBySupplierViewState extends State<_ProductsBySupplierView> {
                     showModalBottomSheet(
                       context: context,
                       builder: (BuildContext context) {
-                        return Card(
-                          child: Column(
-                            children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  decoration: const InputDecoration(
-                                      labelText: 'ProductName'),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      newProduct.name = value;
-                                    });
-                                  },
+                        return SingleChildScrollView(
+                          child: Card(
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: const InputDecoration(labelText: 'ProductName'),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        newProduct.name = value;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  decoration: const InputDecoration(labelText: 'Category'),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      newProduct.category = value;
-                                    });
-                                  },
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: const InputDecoration(labelText: 'Category'),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        newProduct.category = value;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  decoration: const InputDecoration(labelText: 'URL Image'),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      newProduct.image = value;
-                                    });
-                                  },
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: const InputDecoration(labelText: 'URL Image'),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        newProduct.image = value;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  decoration: const InputDecoration(labelText: 'Description'),
-                                  onChanged: (value) {
-                                    setState(() {
-                                      newProduct.description = value;
-                                    });
-                                  },
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: const InputDecoration(labelText: 'Description'),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        newProduct.description = value;
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  decoration: const InputDecoration(labelText: 'Price'),
-                                  keyboardType: TextInputType.number,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      newProduct.price = int.parse(value);
-                                    });
-                                  },
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: TextField(
+                                    decoration: const InputDecoration(labelText: 'Price'),
+                                    keyboardType: TextInputType.number,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        newProduct.price = int.parse(value);
+                                      });
+                                    },
+                                  ),
                                 ),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  addProduct();
-                                  Navigator.of(context).pop(); // Cerrar la ventana flotante
-                                },
-                                child: const Text('agregar'),
-                              ),
-
-                            ],
+                                ElevatedButton(
+                                  onPressed: () {
+                                    addProduct();
+                                    Navigator.of(context).pop(); // Cerrar la ventana flotante
+                                  },
+                                  child: const Text('Agregar'),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
