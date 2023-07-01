@@ -168,7 +168,7 @@ class _StoreHomeViewState extends State<_StoreHomeView> {
                             Image.network(
                               product.image.toString(),
                               fit: BoxFit.cover,
-                              height: 190,
+                              height: 160,
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.end,

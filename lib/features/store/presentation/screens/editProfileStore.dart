@@ -6,7 +6,6 @@ import 'package:ur_provider/features/store/domain/entities/store.dart';
 import 'package:ur_provider/features/store/domain/services/store_service.dart';
 import 'package:ur_provider/features/store/presentation/screens/storeProfile.dart';
 
-
 class EditProfileStore extends StatefulWidget {
   final store tienda;
 
@@ -25,15 +24,14 @@ class _EditProfileStoreState extends State<EditProfileStore> {
   @override
   void initState() {
     super.initState();
-    stores=StoreService.getStoreById(widget.tienda.id) ;
+    stores = StoreService.getStoreById(widget.tienda.id);
   }
+
   @override
   void dispose() {
     _textFieldController.dispose();
     super.dispose();
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -41,130 +39,132 @@ class _EditProfileStoreState extends State<EditProfileStore> {
       appBar: AppBar(
         title: const Text('Edit Profile'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Store Name',
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Store Name',
+                ),
+                initialValue: widget.tienda.name,
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.name = value;
+                  });
+                },
               ),
-              initialValue: widget.tienda.name,
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.name = value;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Email',
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Email',
+                ),
+                initialValue: widget.tienda.email,
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.email = value;
+                  });
+                },
               ),
-              initialValue: widget.tienda.email,
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.email = value;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Address',
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Address',
+                ),
+                initialValue: widget.tienda.address,
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.address = value;
+                  });
+                },
               ),
-              initialValue: widget.tienda.address,
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.address = value;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Name',
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Name',
+                ),
+                initialValue: widget.tienda.name,
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.name = value;
+                  });
+                },
               ),
-              initialValue: widget.tienda.name,
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.name = value;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Last Name',
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Last Name',
+                ),
+                initialValue: widget.tienda.lastName,
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.lastName = value;
+                  });
+                },
               ),
-              initialValue: widget.tienda.lastName,
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.lastName = value;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Phone',
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Phone',
+                ),
+                initialValue: widget.tienda.phone.toString(),
+                inputFormatters: [
+                  FilteringTextInputFormatter.digitsOnly,
+                ],
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.phone = int.parse(value);
+                  });
+                },
               ),
-              initialValue: widget.tienda.phone.toString(),
-              inputFormatters: [
-                FilteringTextInputFormatter.digitsOnly,
-              ],
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.phone = int.parse(value);
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Image URL',
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Image URL',
+                ),
+                initialValue: widget.tienda.image,
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.image = value;
+                  });
+                },
               ),
-              initialValue: widget.tienda.image,
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.image = value;
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            TextFormField(
-              decoration: InputDecoration(
-                labelText: 'Password',
+              SizedBox(height: 16),
+              TextFormField(
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
+                initialValue: widget.tienda.password,
+                obscureText: true,
+                onChanged: (value) {
+                  setState(() {
+                    widget.tienda.password = value;
+                    isPasswordSecure = _isPasswordSecure(value);
+                  });
+                },
               ),
-              initialValue: widget.tienda.password,
-              obscureText: true,
-              onChanged: (value) {
-                setState(() {
-                  widget.tienda.password = value;
-                  isPasswordSecure = _isPasswordSecure(value);
-                });
-              },
-            ),
-            SizedBox(height: 8),
-            if (widget.tienda.password.isNotEmpty && !isPasswordSecure)
-              Text(
-                'La contraseña debe tener al menos 8 caracteres y contener una combinación de letras mayúsculas, letras minúsculas, números y caracteres especiales.',
-                style: TextStyle(color: Colors.red),
+              SizedBox(height: 8),
+              if (widget.tienda.password.isNotEmpty && !isPasswordSecure)
+                Text(
+                  'La contraseña debe tener al menos 8 caracteres y contener una combinación de letras mayúsculas, letras minúsculas, números y caracteres especiales.',
+                  style: TextStyle(color: Colors.red),
+                ),
+              ElevatedButton(
+                onPressed: () {
+                  editData(widget.tienda);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          StoreProfile(storeId: widget.tienda.id),
+                    ),
+                  );
+                },
+                child: Text('Actualizar'),
               ),
-            ElevatedButton(
-              onPressed: ()  {
-                 editData(widget.tienda);
-                 Navigator.push(
-                   context,
-                   MaterialPageRoute(
-                     builder: (context) =>
-                         StoreProfile( storeId: widget.tienda.id,),
-                   ),
-                 );
-              },
-              child: Text('Actualizar'),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

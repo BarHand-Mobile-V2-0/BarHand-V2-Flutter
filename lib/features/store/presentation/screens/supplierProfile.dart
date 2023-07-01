@@ -51,7 +51,9 @@ class _SupplierViewState extends State<_SupplierView> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+        child: SingleChildScrollView(
             padding: const EdgeInsets.all(20.0),
+
             child: FutureBuilder<Supplier>(
               future: SupplierService.getSupplierById(widget.supplierId),
               builder: (context, AsyncSnapshot<Supplier> snapshot) => Center(
@@ -194,7 +196,10 @@ class _SupplierViewState extends State<_SupplierView> {
                   ),
                 ),
               ),
-            )));
+            ),
+        ),
+        ),
+    );
   }
 
   @override
