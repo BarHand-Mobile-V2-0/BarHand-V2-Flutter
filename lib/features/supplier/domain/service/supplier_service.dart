@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 import 'package:ur_provider/config/core/services/http-common.dart';
 import 'package:ur_provider/features/supplier/domain/entities/supplier.dart';
 
+
 class SupplierService{
 
   static Future<List<Supplier>> getAllSupplier() async{
@@ -25,6 +26,8 @@ class SupplierService{
     else
       throw Exception('Error en servicio');
   }
+
+
 
   static Future<void> updateSupplier(dynamic updatedSupplier) async {
     final url = Uri.parse('$baseUrl/suppliers/${updatedSupplier.id}');

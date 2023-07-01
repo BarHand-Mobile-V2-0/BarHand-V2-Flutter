@@ -5,7 +5,8 @@ import 'package:ur_provider/features/auth/infrastructure/infrastructure.dart';
 
 class AuthDataSourceImpl extends AuthDataSource {
   final dio = Dio(BaseOptions(
-    baseUrl: 'http://moisesmore75-001-site1.ftempurl.com/api/v1',
+    //baseUrl: 'http://localhost:5126/api/v1',
+   baseUrl: 'http://moisesmore75-001-site1.ftempurl.com/api/v1',
   ));
 
   @override

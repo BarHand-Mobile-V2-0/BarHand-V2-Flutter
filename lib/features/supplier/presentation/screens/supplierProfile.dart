@@ -6,6 +6,7 @@ import 'package:ur_provider/features/supplier/domain/entities/supplier.dart';
 import 'package:ur_provider/features/supplier/domain/service/supplier_service.dart';
 import 'package:ur_provider/features/supplier/presentation/screens/editProfileSupplier.dart';
 import 'package:ur_provider/features/supplier/presentation/screens/productsBySupplier.dart';
+import 'package:ur_provider/features/supplier/presentation/screens/supplierClients.dart';
 
 class SupplierProfile extends StatelessWidget {
   final int supplierId;
@@ -269,6 +270,15 @@ class _SupplierProfileViewState extends State<_SupplierProfileView> {
                     ),
                 );
               } else if (index == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => SupplierClients(
+                      supplierId: widget.supplierId,
+                    ),
+                  ),
+                );
+
                 // Acción del botón de Clientes
               }
             },

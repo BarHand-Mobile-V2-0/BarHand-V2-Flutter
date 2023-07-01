@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:go_router/go_router.dart';
-import 'package:ur_provider/features/inventory/domain/entities/product.dart';
-import 'package:ur_provider/features/inventory/service/product_service.dart';
+import 'package:ur_provider/features/store/presentation/screens/storesViewProduct.dart';
+
 import 'package:ur_provider/features/supplier/domain/entities/supplier.dart';
 import 'package:ur_provider/features/supplier/domain/service/supplier_service.dart';
-import 'package:ur_provider/features/store/presentation/screens/storeHome.dart';
+import 'package:ur_provider/features/supplier/presentation/screens/productsBySupplier.dart';
 
 import '../../../shared/widgets/side_menu.dart';
 
@@ -14,11 +14,12 @@ var supplierId;
 class SupplierProfileByStore extends StatelessWidget {
   final int supplierId;
 
-  const SupplierProfileByStore({super.key, required this.supplierId});
+  const SupplierProfileByStore({Key? key, required this.supplierId})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    setSupplierId(supplierId);
+
     final scaffoldKey = GlobalKey<ScaffoldState>();
 
     return Scaffold(
@@ -29,18 +30,21 @@ class SupplierProfileByStore extends StatelessWidget {
             IconButton(onPressed: () {}, icon: const Icon(Icons.search_rounded))
           ],
         ),
-        body: const _SupplierView());
+        body: _SupplierView(supplierId: supplierId));
   }
 }
 
-class _SupplierView extends ConsumerStatefulWidget {
-  const _SupplierView();
+class _SupplierView extends StatefulWidget {
+  final int supplierId;
+
+  const _SupplierView({Key? key, required this.supplierId})
+      : super(key: key);
 
   @override
   _SupplierViewState createState() => _SupplierViewState();
 }
 
-class _SupplierViewState extends ConsumerState {
+class _SupplierViewState extends State<_SupplierView> {
   late Future<Supplier> _futureSupplier;
 
   @override
@@ -49,7 +53,7 @@ class _SupplierViewState extends ConsumerState {
         body: Container(
             padding: const EdgeInsets.all(20.0),
             child: FutureBuilder<Supplier>(
-              future: SupplierService.getSupplierById(getSupplierId()),
+              future: SupplierService.getSupplierById(widget.supplierId),
               builder: (context, AsyncSnapshot<Supplier> snapshot) => Center(
                 child: Card(
                   child: Column(
@@ -165,8 +169,13 @@ class _SupplierViewState extends ConsumerState {
                               padding: const EdgeInsets.all(16.0),
                               textStyle: const TextStyle(fontSize: 20),
                             ),
-                            onPressed: () => context
-                                .push('/supplier/${getSupplierId()}/products'),
+                            onPressed: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    StoreViewProduct(supplierId: widget.supplierId ),
+                              ),
+                            ),
                             child: Text('Productos'),
                           ),
                           TextButton(
@@ -191,13 +200,8 @@ class _SupplierViewState extends ConsumerState {
   @override
   void initState() {
     super.initState();
+    _futureSupplier= SupplierService.getSupplierById(widget.supplierId);
   }
 }
 
-void setSupplierId(int id) {
-  supplierId = id;
-}
 
-int getSupplierId() {
-  return supplierId;
-}

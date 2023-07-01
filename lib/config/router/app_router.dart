@@ -1,14 +1,9 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:ur_provider/features/auth/auth.dart';
-import 'package:ur_provider/features/inventory/service/product_service.dart';
-import 'package:ur_provider/features/store/presentation/screens/editProfileStore.dart';
 import 'package:ur_provider/features/store/presentation/screens/storeHome.dart';
 import 'package:ur_provider/features/store/presentation/screens/storeProfile.dart';
 import 'package:ur_provider/features/store/presentation/screens/supplierProfile.dart';
 import 'package:ur_provider/features/supplier/presentation/screens/supplierHome.dart';
-
-import '../../features/inventory/presentation/product_card_by_store.dart';
 
 final appRouter = GoRouter(
   initialLocation: '/login',
@@ -61,14 +56,6 @@ final appRouter = GoRouter(
       ),
     ),
 
-    /*GoRoute(
-      path: '/store/:storeId/products/:productId',
-      builder: (context, state) => ProductScreen1(
-        storeId: int.parse(state.params['storeId'] ?? '0'),
-        product: productService.getProductById(int.parse(state.params['productId']?? 1)),
-
-      ),
-    ),*/
 
     GoRoute(
       path: '/store/supplier/:supplierId',
