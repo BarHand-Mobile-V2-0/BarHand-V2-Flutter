@@ -23,7 +23,7 @@ class RegisterScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            const SizedBox(height: 80),
+            const SizedBox(height: 10),
             // Icon Banner
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,19 +34,19 @@ class RegisterScreen extends StatelessWidget {
                       context.pop();
                     },
                     icon: const Icon(Icons.arrow_back_rounded,
-                        size: 40, color: Colors.white)),
+                        size: 20, color: Colors.black)),
                 const Spacer(flex: 1),
                 Text('Crear cuenta',
                     style:
-                        textStyles.titleLarge?.copyWith(color: Colors.white)),
+                        textStyles.titleLarge?.copyWith(color: Colors.black)),
                 const Spacer(flex: 2),
               ],
             ),
 
-            const SizedBox(height: 50),
+            const SizedBox(height: 0),
 
             Container(
-              height: size.height - 260,
+              height: size.height - 150,
               // 80 los dos sizebox y 100 el ícono
               width: double.infinity,
               decoration: BoxDecoration(
@@ -87,9 +87,7 @@ class _RegisterForm extends ConsumerWidget {
       child: Column(
         children: [
           // const SizedBox( height: 30 ),
-          const Spacer(flex: 2),
-          Text('Nueva cuenta', style: textStyles.titleMedium),
-          const Spacer(),
+
           // const SizedBox( height: 30 ),
 
           CustomTextFormField(
@@ -99,7 +97,7 @@ class _RegisterForm extends ConsumerWidget {
 
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
 
           CustomTextFormField(
             label: 'Apellido',
@@ -108,7 +106,7 @@ class _RegisterForm extends ConsumerWidget {
                 ref.read(registerFormProvider.notifier).onLastNameChanged,
 
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
 
           CustomTextFormField(
             label: 'Correo',
@@ -118,7 +116,7 @@ class _RegisterForm extends ConsumerWidget {
                 ? registerForm.email.errorMessage
                 : null,
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
 
           CustomTextFormField(
             label: 'Contraseña',
@@ -132,7 +130,7 @@ class _RegisterForm extends ConsumerWidget {
                 : null,
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
 
           CustomTextFormField(
             label: 'role: supplier / store',
@@ -140,11 +138,11 @@ class _RegisterForm extends ConsumerWidget {
             onChanged: ref.read(registerFormProvider.notifier).onRoleChanged,
 
           ),
-          const SizedBox(height: 30),
+          const SizedBox(height: 10),
 
           SizedBox(
               width: double.infinity,
-              height: 40,
+              height: 30,
               child: CustomFilledButton(
                 text: 'Crear',
                 buttonColor: Colors.black,

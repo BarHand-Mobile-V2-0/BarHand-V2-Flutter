@@ -1,8 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:ur_provider/features/shared/widgets/side_menu.dart';
 import 'package:ur_provider/features/store/domain/entities/store.dart';
 import 'package:ur_provider/features/store/domain/services/store_service.dart';
@@ -58,7 +55,11 @@ class _SupplierViewState extends ConsumerState {
         appBar: AppBar(
           title: Text('Edtar perfil'),
         ),
-        body: Container(
+        body:SingleChildScrollView(
+            child: Column(
+                children: [
+
+        Container(
             padding: const EdgeInsets.all(20.0),
             child: FutureBuilder<store>(
               future: StoreService.getStoreById(getStoreId()),
@@ -77,7 +78,9 @@ class _SupplierViewState extends ConsumerState {
 
                   return Center(
                     child: Card(
-                      child: Column(
+                      child:
+
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Padding(
@@ -157,17 +160,22 @@ class _SupplierViewState extends ConsumerState {
                           ),
                         ],
                       ),
+
+
                     ),
                   );
                 }
-              })));
+              }))
+        ]
+    )
+        )
 
+    );
   }
 
   int getStoreId() {
     return storeId;
   }
-
 }
 
 void setSupplierId(int id) {
